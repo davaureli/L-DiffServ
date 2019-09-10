@@ -41,4 +41,10 @@ Before the DiffServ architecture, IPv4 networks could use the IP precedence ﬁe
   
 The WIDE project provides researches with daily traces of a transpaciﬁc link, called the MAWI Archive [1]. Each ﬁle contains 15 minutes of trafﬁc ﬂows, captured between 14:00:00 and 14:15:00 local time. This represents usually between 4 and 15 GB of trafﬁc for one ﬁle. Before being released, traces are anonymized so that no personal information can be extracted. Speciﬁcally, the application data is removed and IP addresses are scrambled with the Crypto-PAn Algorithm [11], following these principles: collision-free and preﬁx-preserving. In our analysis we work on the trace of Thursday 7th March, 2019, the ﬁle size is 6696.53 MB and the number of packets is 99,710,343; the channel is used with an average of 688.18 Mbps and a standard deviation of 207.01 Mbps. In the trafﬁc analysis, we work only with Ipv4 packets considering one direction of the ﬂow by ﬁltering packets through the MAC address; this choice has been taken into account for the ﬁnal unidirectional trafﬁc simulation. So, we consider a small part of the total trace, 2,501,286 packets, both for work choices and for memory limits.
 
- Analyze packets from the Mawi_Group database traces to identify the main features in the ToS definition, or rather in the CF fields consisting of 6 bits for DSCP and 2 bits for ECN.
+The following characteristics are the features extracted from every packet: Internet Header Length (IHL), Differentiated Services Code Point (DSCP), Explicit Congestion Notiﬁcation (ECN), Total Length, Flags, Fragment Offset, Time To Live (TTL), Protocol, Source address, Destination address and from the TCP layer we extract Source Port and Destination Port. In the Table I we conclude the data description reporting the mapping between the DSCP value and the service class name; we use them during the analysis as packets’ label.
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
