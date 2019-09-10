@@ -112,11 +112,9 @@ We can evaluate which classiﬁcation model obtains the best accuracy value; eva
 
 | Algorithm  | Hyperparameters | Accuracy Value |
 | ------------- | ------------- |------------- |
-| Multinomial Logistic Regression  |  C=0.001, penalty=’l1’  | 0.8525  |
-| SVM with Kernel Trick  | C=1, gamma=0.001, kernel=’rbf’
-  | 0.9952  |
-| Random Forest  | criterion=’gini’, maxfeatures=’auto’, n-estimators=21
-  | 0.9994  |
+| Multinomial Logistic Regression  |  C=0.001, penalty=’l1’ | 0.8525  |
+| SVM with Kernel Trick  | C=1, gamma=0.001, kernel=’rbf’ | 0.9952  |
+| Random Forest  | criterion=’gini’, maxfeatures=’auto’, n-estimators=21 | 0.9994  |
   
   Looking at the results of the Table III, we use Random Forest as algorithm to reclassify a generic trafﬁc trace according to our new service classes. 
 
