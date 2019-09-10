@@ -142,7 +142,7 @@ This is the main reason because we exploit the capacity of the binary tree to ha
 The simulator environment is composed by two different blocks; the ﬁrst one for the classiﬁcation part (BA Classiﬁer), where the packets ﬂow arrives with as many queues as possible different service classes, and ﬁnally there is one last cumulative queue before the DoDeque part. In general, we have in the ﬁrst part a differentiation between queues based on the DSCP values, every packet is forwarded into its speciﬁc priority queue. This queue will have two attributes: the storage size (a percentage from the total amount of buffer size) and the speed of service, proportion to the class that it manages. For the ﬁrst feature we report our buffer size distribution between the macro service classes, which is used even for the subdivision in our classiﬁcation. We divide the total resource by this way:
 
 |Service Class | Percentage of Buffer |
-| ------------- | ------------- |------------- |
+| ------------- | ------------- |
 | Scavenger  |  15% |
 | Best Effort | 40% |
 | AF1  | 6% |
