@@ -45,13 +45,13 @@ The following characteristics are the features extracted from every packet: Inte
 
 | DSCP Value  | DSCP Class | DSCP Label |
 | ------------- | ------------- |------------- |
-| 48, 56  | C6 C7  || Network & Internetwork Control  |
-| 40, 46  | CS5 EF  || Critical Voice RTP  |
-| 32, 34, 36, 38  | CS4 AF4  || Flash Ovrride  |
-| 24, 26, 28, 30  | CS3 AF3  || Flash Voice  |
-| 16, 18, 20, 22 | CS2 AF2  || Immediate  |
-| 8, 10, 12, 14  | CS1 AF1  || Priority  |
-| 0  |CS0  || Best Effort  |
+| 48, 56  | C6 C7  | Network & Internetwork Control  |
+| 40, 46  | CS5 EF  | Critical Voice RTP  |
+| 32, 34, 36, 38  | CS4 AF4  | Flash Ovrride  |
+| 24, 26, 28, 30  | CS3 AF3  | Flash Voice  |
+| 16, 18, 20, 22 | CS2 AF2  | Immediate  |
+| 8, 10, 12, 14  | CS1 AF1  | Priority  |
+| 0  |CS0  | Best Effort  |
 
 
 
