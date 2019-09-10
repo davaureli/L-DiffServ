@@ -31,7 +31,7 @@ Assured Forwarding (AF) allows the operator to provide assurance of delivery as 
 
 Before the DiffServ architecture, IPv4 networks could use the IP precedence ﬁeld in the ToS [8] byte of the IPv4 header to mark priority trafﬁc. The IP precedence was not widely used, so the IETF agreed to reuse the ToS octet as the DS ﬁeld for DiffServ networks. In order to maintain backward compatibility with network devices that still use the IP Precedence ﬁeld, was deﬁned the Class Selector PHB. The Class Selector code points are of the binary form xxx000. The ﬁrst three bits are for the IP precedence bits. Each IP precedence value can be mapped into a DiffServ class. CS0 maps to IP precedence 0, CS1 to IP precedence 1, and so on. If a packet is received from a non-DiffServ-aware router, it can understand the encoding as a Class Selector code point.
 
-
+### Machine Learning Techniques
 
 <p align="center">
 <img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/diagramma.png" width="600">
