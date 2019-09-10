@@ -118,8 +118,67 @@ We can evaluate which classiﬁcation model obtains the best accuracy value; eva
   
   Looking at the results of the Table III, we use Random Forest as algorithm to reclassify a generic trafﬁc trace according to our new service classes. 
 
+### Numerical Analysis
 
+In this section we evaluate our classiﬁcation respect to the current one, according to the behaviour of the network managing a congestion situation simulating real trafﬁc traces. To quantitatively measure quality of service, the following aspects are often considered: 
 
+- Delay; 
+- Jitter;
+- Bandwidth;
+- Packet Loss.
 
+We focus the attention on the last parameter, measuring the quantity of packets discarded. The evaluation is carried on a simulator implemented in Python based on the Heap data structure. The idea is to reconstruct the ﬂow of the packets according to the features available from the trace, each packet is characterized by the snifﬁng time, the bit size and the DSCP marking. In this way we know the arriving time of the packet into the router with its size and priority marking. The array on which we work is composed by these information:
+
+(Snifﬁng time, (Size, DSCP marking, Dscp decimal value))
+
+This array is transformed into a binary heap, in particular Min Heap, with the command heapify. So, the router processes before the parent node and then the child node according to the position in the binary tree. Every time the router serves a packet, this one is popped out and then repushed into the binary structure with an updating time.
+
+(FORMULA TIME UPDATE)
+
+This is the main reason because we exploit the capacity of the binary tree to handle our priority queue composed by packets. In fact the idea is to serve always the root node of our MinHeap, and the complexity to ﬁnd it is O(1), so constant. Moreover when the root node is processed we replace it and restructure the Heap. The complexity for this operation is the previous complexity, for root extraction, in additionO(log2 n) (n = total number of nodes) to reassemble the hierarchical order of the nodes (packets). The last event is to push into the binary tree the new packet processed with the Time Updated always with the complexity of O(log2 n); every packet is released only in the last queue of the Router.[16] In the Figure 6 we show the environment developed by our code for the simulator architecture:
+
+(foto aRCHITETTURA COSTRUITA)
+
+The simulator environment is composed by two different blocks; the ﬁrst one for the classiﬁcation part (BA Classiﬁer), where the packets ﬂow arrives with as many queues as possible different service classes, and ﬁnally there is one last cumulative queue before the DoDeque part. In general, we have in the ﬁrst part a differentiation between queues based on the DSCP values, every packet is forwarded into its speciﬁc priority queue. This queue will have two attributes: the storage size (a percentage from the total amount of buffer size) and the speed of service, proportion to the class that it manages. For the ﬁrst feature we report our buffer size distribution between the macro service classes, which is used even for the subdivision in our classiﬁcation. We divide the total resource by this way:
+
+|Service Class | Percentage of Buffer |
+| ------------- | ------------- |------------- |
+| Scavenger  |  15% |
+| Best Effort | 40% |
+| AF1  | 6% |
+| AF2 | 6% |
+| AF3 | 6% |
+| AF4 | 6% |
+| EF  | 16%  |
+|Network & Internetwork Control | 5% |
+
+For the second parameter, the service speed value of the queues is given a value equal to the queue buffer size divided by the TTL (Time To Live = 250ms). In the last queue of our simulator every packets is forwarded. The allocation of the resource is a central theme for the simulation, in our case we follow the considerations of [14]. The Buffer is dimensioned in this way:
+
+(FORMULA Buffer Appenzeller)
+
+In the Formula 4, C represents the output capacity of the Router, while 2TT is the Round Trip Time and at the denominator there is the squared root of n, where n is the total number of sessions. In our simulation we resize the router in the following way. the ﬁrst queues channel (InDequeue Part) is twice the dimension of the ﬁnal queue (DoDequeue Part) in order to obtain a more congested situation. In this way we test the ability of the network to discard packets following the Tail Drop algorithm in the beginning queues, while in the last queue applying a check on the priorities of the packets. In the simulation we consider two models for managing the resource allocation: MAM [9] and RDM [10]. The MAM (Maximum Allocation Model) does not allow the sharing of the unused resource so there is a deterministic allocation of the resource, while the RDM (Russian Dolls Model) allows sharing the resource between different service classes establishing a certain percentage of the resource that could be shared. 
+
+### Results
+
+Now we can observe the results for the MAM and RDM model. We train the model on the ﬁrst part of the trace, Thursday 7th March, 2019, with an amount of 2,501,286 packets. The test set is composed by the same amount of packets for each trace from Friday 8th March, 2019 to Thursday 14th March, 2019. We work on two different Heap binary tree, in the ﬁrst one we take into account snifﬁng time, dimension and marking based on the current DSCP while for the second structure we modify the DSCP marking using the our new classiﬁcation applying Random Forest. The results represent the Conﬁdence Interval at 95% for each possible capacity analyzed. This latter is the variable that changes in each singular simulation, the capacity ranges from 300 Mbps to 1 Gbps which are the average trafﬁc amount (considering the unidirectional ﬂow) and the maximum trafﬁc amount, with a step of 100 Mbps. In the simulation we consider the packets ﬂow divided between sessions. We extract the possible sessions applying the Hash Function SHA-256 to 4 different ﬁelds from each packet: Source IP address, Destination IP address, Source Port number and Destination Port number. By performing the hash transformation we are able to identify all the sessions in the part of communication that we analyze. A session is affected by congestion when it loses at least one packet, so our analysis focuses on the percentage of sessions affected by congestion during the simulation. Now we analyze the results, ﬁrstly in the MAM model and then with the RDM model. 
+
+* MAM Model
+
+(FOTO MAMA)
+
+In the Figure 7 are reported the results according to the variation of the output capacity, which regulates the amount of available buffer size. In this speciﬁc case the classiﬁcation that we propose is not better than the current one until an output capacity of 900 Mbps. In fact, the current classiﬁcation is able to hit a lower percentage of sessions during the congestion. The worst results are obtained with the capacity from 300 Mbps to 500 Mbps where for the current classiﬁcation are hit from 30% to little bit more than the 10% while using our marking are hit more than the 50% of sessions and lower than 20%. Only in the last part we have a better results, where the output capacity is between 900 Mbps and 1 Gbps; here the conﬁdence interval goes between a little bit more than 10% of sessions hit and little less than 10%.
+
+* RDM Model
+In the RDM (Russian Dolls Model) simulation we establish the percentage of resource possible to share between different service classes. The idea is to check the amount of empty queue for each class and if the percentage of usage is less than a speciﬁc threshold we can use this queue for other classes. We decide to analyse three different sharing resource observing the queue at 20%, 50% and 80%. These three values are the thresholdlessthanwecansharetheresourcewithotherservice classes, always according to the hierarchy priority. So, the ﬁrst possible queue to be ﬁlled is the Scavenger queue until the Network and Internetwork Control queue. The ﬁrst analysis we present is with the threshold ﬁxed at the 20%, in the Figure 8 we have the results. Our proposed classiﬁcation is deﬁnitely better than the classiﬁcation currently used. In fact, only in the ﬁrst part of the analysis for a capacity that goes from 300 Mbps to 400 Mbps is better the current classiﬁcation, while from 500 Mbps until 1 Gbps the congestion affects a less percentage of sessions hit by the loss of at least one packet. It is interesting to make attention on the last three output capacity from 800 Mbps to 1 Gbps where our classiﬁcation allows to the router to hit surely less than the 10% of the total number of sessions. Whereas the current classiﬁcation has the upper bound of the conﬁdence interval more than the 10%. Now we can observe in the Figure 9 and the Figure 10 the behaviour of the router with 50% and 80% as checking threshold.
+
+(FOTO RDM 20%)
+
+Both the analysis with the 50% shared resource and the 80% has a similar trend for what it concerns the different output capacity and the consequent size of the buffer following [14]. In fact, with a capacity equal to 300 Mbps, 400 Mbps or 500 Mbps, the current classiﬁcation is better by affecting a lower percentage of ﬂows. However, we notice a difference between the plot with the threshold at 50% compared to the one with at 80% because the percentage of ﬂows affected by the second graph is greater than the ﬁrst one and in general the conﬁdence intervals cover values with higher percentages. Certainly the improvement that we have after the 500 Mbps is clear in both cases. Taking inspiration from the last reﬂection about the differences between the Figure 9 and Figure 10 we decide to compare the behaviour of the RDM model, marking the packets with our classiﬁcation, with respect to the three different threshold (20%, 50% and 80%). The Figure 11 sums up the behaviour in the three cases. It is clear how the router improves globally with our classiﬁcation, when it can forward the trafﬁc in the different queues of the services offered. However comparing the individual percentages of sharing there is a worsening as the available shared resource increases. In fact, we see how passing from 20% of shared resource to 50% we get worse in terms of conﬁdence intervals compared to the percentages of sessions affected by the loss of at least one packet. This trend gets worse by checking up to 80% of the resource used. Overall, we see that in all three cases we have an improvement with the increase in output capacity and the consequent growth in size of the buffer available. Our differentiation generally improves compared to the current classiﬁcation, but at the same time sharing too much resource increases the risk of service classes being clogged with packets from other services.
+
+(foto RDM E COMPARISON)
+
+### Conclusions
+
+We can observe in which situation our proposed classiﬁcation is better than the current one and when not. We get our best result analysing the RDM model, allowing the sharing of resources between the different service queues. Certainly through the differentiation of the services proposed we improve the service offered when we can exploit the unused resource over time, allowing different services to beneﬁt from the unused resource. Completely the opposite is the result in the MAM model where sharing the resource is not allowed. In fact, by increasing the granularity within the macro-classes the current classication affects only the sessions related to the Best-Effort and Scavenger service instead using our proposed classiﬁcation we are also affecting the AF class, so probably much of the resource that we allocate to the remaining sub-classes is not used and surely this is an aspect that we need to improve. In the future we plan to propose an architecture that enables a dynamic QoS. Our proposal has increased the granularity of the service classes, but always in a static environment where the number of classes is ﬁxed. The real change, will be possible, when the routers could infer on the real-time request of the users analyzing the trafﬁc. It could deﬁne a temporal window, within which it evaluates whether the number of classes at time t-1 are still valid at time t; choosing between decrease or increase the available service classes. In this way the network will be able to predict the users future request by minimizing the number of sessions affected by packet loss. 
 
 
