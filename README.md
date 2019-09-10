@@ -10,10 +10,10 @@ The capability to provide resource assurance and service differentiation in a ne
 
 DiffServ architecture was proposed by the IETF publishing RFC 2474 [3]. It relies on a mechanism to classify and mark packets as belonging to a speciﬁc class of service, using 8 bits for the Differentiated Services (DS) ﬁeld in the IP header. This ﬁeld is composed by two components, the 6 most signiﬁcant bits identify the DSCP (Differentiated Services Code Point) while the 2 least signiﬁcant bits deﬁne the ECN (Explicit Congestion Notiﬁcation). Classiﬁcation is based only on the DSCP ﬁeld, while the ECN ﬁeld is used for router communication in congestion detection. Each router is conﬁgured to differentiate trafﬁc based on its set of classes. Each trafﬁc class can be managed differently, ensuring preferential treatment for higher-priority trafﬁc. In DiffServ complex functions, such as packet classiﬁcation, can be carried out at the edge of the network by edge routers. Whereas core routers simply apply per-hop behaviour treatment (PHB) which deﬁnes the packet forwarding properties associated to a speciﬁc trafﬁc class. In theory, a network could have up to 64 different trafﬁc classes using the 64 available DSCP values, this gives to the network operator great ﬂexibility. In practice DiffServ recommend, but do not require, certain encodings. Most networks use the following commonly PHB:
 
-• Default Forwarding (DF) 
-• Expedited Forwarding (EF) 
-• Assured Forwarding (AF) 
-• Class Selector (CS)
+- Default Forwarding (DF) 
+- Expedited Forwarding (EF) 
+- Assured Forwarding (AF) 
+- Class Selector (CS)
 
 *A. Default Forwarding*
 
