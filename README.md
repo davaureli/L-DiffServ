@@ -43,8 +43,16 @@ The WIDE project provides researches with daily traces of a transpaciﬁc link, 
 
 The following characteristics are the features extracted from every packet: Internet Header Length (IHL), Differentiated Services Code Point (DSCP), Explicit Congestion Notiﬁcation (ECN), Total Length, Flags, Fragment Offset, Time To Live (TTL), Protocol, Source address, Destination address and from the TCP layer we extract Source Port and Destination Port. In the Table I we conclude the data description reporting the mapping between the DSCP value and the service class name; we use them during the analysis as packets’ label.
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| DSCP Value  | DSCP Class | DSCP Label |
+| ------------- | ------------- |------------- |
+| 48, 56  | C6 C7  || Network & Internetwork Control  |
+| 40, 46  | CS5 EF  || Critical Voice RTP  |
+| 32, 34, 36, 38  | CS4 AF4  || Flash Ovrride  |
+| 24, 26, 28, 30  | CS3 AF3  || Flash Voice  |
+| 16, 18, 20, 22 | CS2 AF2  || Immediate  |
+| 8, 10, 12, 14  | CS1 AF1  || Priority  |
+| 0  |CS0  || Best Effort  |
+
+
+
 
