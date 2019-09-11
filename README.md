@@ -18,7 +18,7 @@ DiffServ architecture was proposed by the IETF publishing RFC 2474 [3]. It relie
 ### Machine Learning Techniques
 
 <p align="center">
-<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/diagramma.PNG" width="500">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/WorkOverflow.PNG" width="500">
  </p>
  
 * Data Description 
@@ -140,6 +140,10 @@ This is the main reason because we exploit the capacity of the binary tree to ha
 
 <p align="center">
 <img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/structure.PNG" width="400">
+ </p>
+ 
+ <p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/didascalia.PNG" width="400">
  </p>
 
 The simulator environment is composed by two different blocks; the ﬁrst one for the classiﬁcation part (BA Classiﬁer), where the packets ﬂow arrives with as many queues as possible different service classes, and ﬁnally there is one last cumulative queue before the DoDeque part. In general, we have in the ﬁrst part a differentiation between queues based on the DSCP values, every packet is forwarded into its speciﬁc priority queue. This queue will have two attributes: the storage size (a percentage from the total amount of buffer size) and the speed of service, proportion to the class that it manages. For the ﬁrst feature we report our buffer size distribution between the macro service classes, which is used even for the subdivision in our classiﬁcation. We divide the total resource by this way:
