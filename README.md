@@ -64,7 +64,11 @@ Observing the Figure 3 we have packets marked with the Expedited Forwarding (CS5
 
 The dataset after running the over-sampling technique has 10,611,286 number of rows, representing the packets , and 42 columns, as number of features (including the DSCP label). Our purpose is to extract the variables that most identify the belonging of a packet to one service class rather than to another. We reduce the dimensionality of the space working with the LDA (Linear Discriminant Analysis) technique. We choose this one because it allows us to specify the number of axes for the new space, thus obtaining a 3D graphic distribution of the packets. Moreover it works in a supervised way, being also a classiﬁcation algorithm, in this way it can maximize the variance between class of services. In the Table II are described the components of the 3 axis, created through LDA. For each initial variable we have the percentage amount of the correlation between it and the new axis. They are listed in a decreasing order considering only the magnitude of the percentage, we show only the ﬁrst ten components for each axis.
 
-(Tabella assi di lda)
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/tableLDA.PNG" width="600">
+ </p>
+
+
 
 * Clustering
 
@@ -86,7 +90,7 @@ We evaluate the optimal number of clusters (k), to establish the number of servi
 
 
 <p align="center">
-<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/comparison1buona.png" width="800">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/samplesizesilhouette.PNG" width="800">
  </p>
 
 In each k we compute the Formula 2 by 100 times for each possible sample size, in this way we capture the real behaviour in our packets population without considering all the packets. In the Figure 4 we show the trend according to the variation of the sample size. At the beginning we have a dramatic increase for the Silhouette Index passing from 5 to 25 centroids. Then thereisaslowdecreaseuntil35centroidsandthenalittletrend of increase until 60 centroids, which represents the peak of our analysis, the last part is characterized by a steady decreasing trend. The choice of the optimal number of clusters takes into account both the maximization of the Silhouette Coefﬁcient and the greater variation between our choice and the value evaluated at the step before, for these reasons we prefer k = 25. Our evaluation reﬂects a conservative behaviour, knowing the disadvantages of the K-Means; especially the globular shape detecting for the clustering. In this way we can state that our classiﬁcation is composed by 25 Service Classes. In the Figure 5 we show the result of K-Means with 25 centroids; analyzing each cluster according to the Silhouette index.
