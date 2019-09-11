@@ -90,7 +90,7 @@ We evaluate the optimal number of clusters (k), to establish the number of servi
 
 
 <p align="center">
-<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/comparison1buona.png" width="600">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/comparison1buona.png" width="800">
  </p>
 
 In each k we compute the Formula 2 by 100 times for each possible sample size, in this way we capture the real behaviour in our packets population without considering all the packets. In the Figure 4 we show the trend according to the variation of the sample size. At the beginning we have a dramatic increase for the Silhouette Index passing from 5 to 25 centroids. Then thereisaslowdecreaseuntil35centroidsandthenalittletrend of increase until 60 centroids, which represents the peak of our analysis, the last part is characterized by a steady decreasing trend. The choice of the optimal number of clusters takes into account both the maximization of the Silhouette Coefﬁcient and the greater variation between our choice and the value evaluated at the step before, for these reasons we prefer k = 25. Our evaluation reﬂects a conservative behaviour, knowing the disadvantages of the K-Means; especially the globular shape detecting for the clustering. In this way we can state that our classiﬁcation is composed by 25 Service Classes. In the Figure 5 we show the result of K-Means with 25 centroids; analyzing each cluster according to the Silhouette index.
