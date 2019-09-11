@@ -2,7 +2,7 @@
 
 As the number of Internet users continues to grow, network performance requirements must increase right along with them. In addition, many of the latest online services require high network performance.The primary goal of quality of service is managing resources by setting priorities for speciﬁc types of data (video, audio, ﬁles). Actually packets are classified through DiffServ architecture based on the **RFC 4594**. So, there are features which identify packets from a particular service class. In this project, we propose a methodology able to detect these distinctive characteristics to improve the granularity of service classes. In fact, the idea is to establish the new number of services through a sub-classiﬁcation starting from the macro service classes. The evaluation between the different classiﬁcation methods, the current one and the proposed one, takes place through a simulation testing the behaviour of the network during congestion; considering the percentage of ﬂows hit by packet loss. We validate the approach on the **MAWI** data set. We analyze the model conditions which favor our classification with respect to the current one and vice versa.
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;Time Updated= Sniffing Time + \frac{Size}{Queue Speed Processing}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;Time Updated= Sniffing Time + \frac{Size}{Queue Speed Processing}" title="\Large Time Updated= Sniffing Time + \frac{Size}{Queue Speed Processing}" />
 
 ### Introduction
 
