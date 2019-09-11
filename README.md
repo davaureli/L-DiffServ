@@ -50,11 +50,17 @@ However, until now, our methodology considers all packets in an undifferentiated
 * Oversampling
 
 We can observe the DSCP distribution of our trace. We focus the attention on the percentage of packets for each service class.
-(FOTO DISTRIBUZIONE 1)
+
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/distribution_DSCP.png" width="600">
+ </p>
 
 In the Figure 2 more than 98% of the trace is characterized by best-effort trafﬁc while for the other services the percentage is minimal or almost not existent. Moreover, in the histogram there is a label for Not Known marking, which is not listed in the Table I. During the explanation of the DiffServ architecture, suggested by the RFCs, we said that there are some values commonly used by the majority in the network to create a stable communication between different DiffServ Domains. However, in the analysis of the DSCP values comes out that there are values not recommended by the RFC and are almost all related to the values between 0 and 8. It is explained in the RFC 4594 [4] at pp20. This trafﬁc is known as Scavenger, something with lower priority than the best-effort class and to which is allocated the lowest amount of bandwidth; this argument will be resumed during the simulation part. Besides, it is interesting to observe the percentage of packets that belong to the other classes without considering the best-effort and Not Known occurrences, to have a complete picture of the information in our hands.
 
-(FOTO DISTRIBUZIONE 2)
+
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/distribution_DSCP_2.png" width="600">
+ </p>
 
 Observing the Figure 3 we have packets marked with the Expedited Forwarding (CS5, EF) class and Network & Internetwork Control (CS6 and CS7), while for the four Assured Forwarding (AF) classes we have almost no information. In fact the packets related to the Priority (CS1, AF1), Immediate (CS2, AF2), Flash Voice (CS3, AF3) and Flash Override (CS4, AF4) are only the 1.61% of the total number of packets (without considering best effort and Not Known class). This distribution of data presents one of the most discussed problems in the Machine Learning literature. The behaviour of the classiﬁcation algorithms when the dataset is strongly unbalanced in favour of a speciﬁc class. This problem is known as the Paradox of Accuracy. In fact, if we limit ourselves to identify best-effort packets from non best-effort, any classiﬁcation algorithm trained on this data will classify everything as best-effort getting always more than 90% of Accuracy. We decide to exploit the technique presented in [13]. Smote algorithm can oversample the service classes for which we have very few samples, without losing information from the best-effort class. We obtain a balanced dataset where each service class has the same number of occurrences of the best-effort class. Now we can extract the characteristics which maximize the differentiation between service classes.
 
@@ -82,7 +88,10 @@ e condizioni...
 
 We evaluate the optimal number of clusters (k), to establish the number of service classes for our ﬁnal proposal. The analysis considers a range of possible values, for k, from 5 to 75 with a step of 5. The following Figure 4 shows the results of the Silhouette Coefﬁcient.
 
-(FOTO PLOT andamento silhouette)
+
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/SilhouettePlot.png" width="600">
+ </p>
 
 In each k we compute the Formula 2 by 100 times for each possible sample size, in this way we capture the real behaviour in our packets population without considering all the packets. In the Figure 4 we show the trend according to the variation of the sample size. At the beginning we have a dramatic increase for the Silhouette Index passing from 5 to 25 centroids. Then thereisaslowdecreaseuntil35centroidsandthenalittletrend of increase until 60 centroids, which represents the peak of our analysis, the last part is characterized by a steady decreasing trend. The choice of the optimal number of clusters takes into account both the maximization of the Silhouette Coefﬁcient and the greater variation between our choice and the value evaluated at the step before, for these reasons we prefer k = 25. Our evaluation reﬂects a conservative behaviour, knowing the disadvantages of the K-Means; especially the globular shape detecting for the clustering. In this way we can state that our classiﬁcation is composed by 25 Service Classes. In the Figure 5 we show the result of K-Means with 25 centroids; analyzing each cluster according to the Silhouette index.
 
