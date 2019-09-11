@@ -128,7 +128,9 @@ We focus the attention on the last parameter, measuring the quantity of packets 
 
 This array is transformed into a binary heap, in particular Min Heap, with the command heapify. So, the router processes before the parent node and then the child node according to the position in the binary tree. Every time the router serves a packet, this one is popped out and then repushed into the binary structure with an updating time.
 
-(FORMULA TIME UPDATE)
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/formula_time.PNG" width="400">
+ </p>
 
 This is the main reason because we exploit the capacity of the binary tree to handle our priority queue composed by packets. In fact the idea is to serve always the root node of our MinHeap, and the complexity to ﬁnd it is O(1), so constant. Moreover when the root node is processed we replace it and restructure the Heap. The complexity for this operation is the previous complexity, for root extraction, in additionO(log2 n) (n = total number of nodes) to reassemble the hierarchical order of the nodes (packets). The last event is to push into the binary tree the new packet processed with the Time Updated always with the complexity of O(log2 n); every packet is released only in the last queue of the Router.[16] In the Figure 6 we show the environment developed by our code for the simulator architecture:
 
@@ -151,7 +153,9 @@ The simulator environment is composed by two different blocks; the ﬁrst one fo
 
 For the second parameter, the service speed value of the queues is given a value equal to the queue buffer size divided by the TTL (Time To Live = 250ms). In the last queue of our simulator every packets is forwarded. The allocation of the resource is a central theme for the simulation, in our case we follow the considerations of [14]. The Buffer is dimensioned in this way:
 
-(FORMULA Buffer Appenzeller)
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/formula_buffer.PNG" width="400">
+ </p>
 
 In the Formula 4, C represents the output capacity of the Router, while 2TT is the Round Trip Time and at the denominator there is the squared root of n, where n is the total number of sessions. In our simulation we resize the router in the following way. the ﬁrst queues channel (InDequeue Part) is twice the dimension of the ﬁnal queue (DoDequeue Part) in order to obtain a more congested situation. In this way we test the ability of the network to discard packets following the Tail Drop algorithm in the beginning queues, while in the last queue applying a check on the priorities of the packets. In the simulation we consider two models for managing the resource allocation: MAM [9] and RDM [10]. The MAM (Maximum Allocation Model) does not allow the sharing of the unused resource so there is a deterministic allocation of the resource, while the RDM (Russian Dolls Model) allows sharing the resource between different service classes establishing a certain percentage of the resource that could be shared. 
 
@@ -161,18 +165,28 @@ Now we can observe the results for the MAM and RDM model. We train the model on 
 
 * MAM Model
 
-(FOTO MAMA)
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/MAM.PNG" width="400">
+ </p>
 
 In the Figure 7 are reported the results according to the variation of the output capacity, which regulates the amount of available buffer size. In this speciﬁc case the classiﬁcation that we propose is not better than the current one until an output capacity of 900 Mbps. In fact, the current classiﬁcation is able to hit a lower percentage of sessions during the congestion. The worst results are obtained with the capacity from 300 Mbps to 500 Mbps where for the current classiﬁcation are hit from 30% to little bit more than the 10% while using our marking are hit more than the 50% of sessions and lower than 20%. Only in the last part we have a better results, where the output capacity is between 900 Mbps and 1 Gbps; here the conﬁdence interval goes between a little bit more than 10% of sessions hit and little less than 10%.
 
 * RDM Model
 In the RDM (Russian Dolls Model) simulation we establish the percentage of resource possible to share between different service classes. The idea is to check the amount of empty queue for each class and if the percentage of usage is less than a speciﬁc threshold we can use this queue for other classes. We decide to analyse three different sharing resource observing the queue at 20%, 50% and 80%. These three values are the thresholdlessthanwecansharetheresourcewithotherservice classes, always according to the hierarchy priority. So, the ﬁrst possible queue to be ﬁlled is the Scavenger queue until the Network and Internetwork Control queue. The ﬁrst analysis we present is with the threshold ﬁxed at the 20%, in the Figure 8 we have the results. Our proposed classiﬁcation is deﬁnitely better than the classiﬁcation currently used. In fact, only in the ﬁrst part of the analysis for a capacity that goes from 300 Mbps to 400 Mbps is better the current classiﬁcation, while from 500 Mbps until 1 Gbps the congestion affects a less percentage of sessions hit by the loss of at least one packet. It is interesting to make attention on the last three output capacity from 800 Mbps to 1 Gbps where our classiﬁcation allows to the router to hit surely less than the 10% of the total number of sessions. Whereas the current classiﬁcation has the upper bound of the conﬁdence interval more than the 10%. Now we can observe in the Figure 9 and the Figure 10 the behaviour of the router with 50% and 80% as checking threshold.
 
-(FOTO RDM 20%)
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/RDM20.PNG" width="400">
+ </p>
 
 Both the analysis with the 50% shared resource and the 80% has a similar trend for what it concerns the different output capacity and the consequent size of the buffer following [14]. In fact, with a capacity equal to 300 Mbps, 400 Mbps or 500 Mbps, the current classiﬁcation is better by affecting a lower percentage of ﬂows. However, we notice a difference between the plot with the threshold at 50% compared to the one with at 80% because the percentage of ﬂows affected by the second graph is greater than the ﬁrst one and in general the conﬁdence intervals cover values with higher percentages. Certainly the improvement that we have after the 500 Mbps is clear in both cases. Taking inspiration from the last reﬂection about the differences between the Figure 9 and Figure 10 we decide to compare the behaviour of the RDM model, marking the packets with our classiﬁcation, with respect to the three different threshold (20%, 50% and 80%). The Figure 11 sums up the behaviour in the three cases. It is clear how the router improves globally with our classiﬁcation, when it can forward the trafﬁc in the different queues of the services offered. However comparing the individual percentages of sharing there is a worsening as the available shared resource increases. In fact, we see how passing from 20% of shared resource to 50% we get worse in terms of conﬁdence intervals compared to the percentages of sessions affected by the loss of at least one packet. This trend gets worse by checking up to 80% of the resource used. Overall, we see that in all three cases we have an improvement with the increase in output capacity and the consequent growth in size of the buffer available. Our differentiation generally improves compared to the current classiﬁcation, but at the same time sharing too much resource increases the risk of service classes being clogged with packets from other services.
 
-(foto RDM E COMPARISON)
+<p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/RDM50.PNG" width="400">
+ </p>
+ 
+ <p align="center">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/rdm80.PNG" width="400">
+ </p>
 
 ### Conclusions
 
