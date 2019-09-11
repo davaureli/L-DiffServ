@@ -92,11 +92,11 @@ We evaluate the optimal number of clusters (k), to establish the number of servi
 In each k we compute the Formula 2 by 100 times for each possible sample size, in this way we capture the real behaviour in our packets population without considering all the packets. In the Figure 4 we show the trend according to the variation of the sample size. At the beginning we have a dramatic increase for the Silhouette Index passing from 5 to 25 centroids. Then thereisaslowdecreaseuntil35centroidsandthenalittletrend of increase until 60 centroids, which represents the peak of our analysis, the last part is characterized by a steady decreasing trend. The choice of the optimal number of clusters takes into account both the maximization of the Silhouette Coefﬁcient and the greater variation between our choice and the value evaluated at the step before, for these reasons we prefer k = 25. Our evaluation reﬂects a conservative behaviour, knowing the disadvantages of the K-Means; especially the globular shape detecting for the clustering. In this way we can state that our classiﬁcation is composed by 25 Service Classes. In the Figure 5 we show the result of K-Means with 25 centroids; analyzing each cluster according to the Silhouette index.
 
 <p align="center">
-<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/silo1.PNG" width="400">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/silo1.PNG" width="500">
  </p>
  
  <p align="center">
-<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/silo2.PNG" width="400">
+<img src="https://github.com/davidemedusaureli/ToS-in-TCP-IP/blob/master/silo2.PNG" width="500">
  </p>
 
 In the upper plot, on the left side, the dot red line identiﬁes the average value between all the clusters for the Silhouette Coefﬁcient, equal to 0.88955. In the right side we have the legend related to the 3D-plot about K-Means clustering. In this legend we can see the sub-classes identiﬁed within the main classes. The best-effort class is differentiated into 11 sub-categories, while the Not Known service is divided into 7 different sub-classes. For both Assured Forwarding (AF) service class and Critical Voice RTP (EF) we see that our clustering algorithm ﬁnds only one subclass, without subdivisions.
