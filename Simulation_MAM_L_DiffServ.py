@@ -154,7 +154,7 @@ print()
 print("Reading 2 different Structure")
 print()
 
-#Las part for ending the creation of the structure (stop here to comment)
+#Last part for ending the creation of the structure (stop here to comment)
 
 
 #Once we created the 2 different data structure we can read them
@@ -311,7 +311,7 @@ for mark in poss_mark :
         if mark == "old":
             number = 8
         elif mark == "new":
-            #According to our number of service classes
+            #According to our number of service classes after the Silhouette
             number = len(new_dscp_tab) 
     
         for p_type in range(number):
@@ -339,7 +339,7 @@ for mark in poss_mark :
         
         last_queue_update = 0
         
-        #Since we have element in the time sequence
+        #Until we have element in the time sequence
         while time_sequence:
             
             #we extract the root
@@ -492,6 +492,7 @@ for mark in poss_mark :
             if pkt[1][3] in diz_hash_discarded:
                 #Update the count of packet discarded according to the session
                 diz_hash_discarded[pkt[1][3]] += 1
+                
         #Dictionary for the flows not hit
         counter_hash_discarded = Counter(diz_hash_discarded.values())
         print()
