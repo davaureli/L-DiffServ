@@ -22,9 +22,9 @@ For more information please contact me.
 
 ### sim
 
-1) **Simulation_MAM_L_DiffServ**: This files simulates the MAM (maximum allocation model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our L-DiffServ.
+1) **Simulator_BE_L-DiffServ.py**: The file is the main for the spacket based simulator.
 
-2) **Simulation_RDM_L_DiffServ**: This files simulates the RDM (russian doll model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our *L-DiffServ*.
+2) **Functions_Simulator_LDIFFSERV.py**: This file contains all classes for the simulator.
 
 ### data_pcap
 
