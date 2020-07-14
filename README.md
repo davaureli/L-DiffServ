@@ -1,9 +1,9 @@
 # L-DiffServ & Packet Based Simulator
 
-This code is related to the paper titled "Going Beyond DiffServ in IP Traffic Claasification" under consideration for publication. 
+This code is related to the paper titled "Going Beyond DiffServ in IP Traffic Classification" under consideration for publication. 
 For more information please contact me.
 
-### List of Files:
+### Methodology
 
 1) **get_Data_from_Mawi.py** : This file downloads the traces from the cite http://mawi.wide.ad.jp/mawi/samplepoint-F/2019/ specifying the                                 date.
 
@@ -18,6 +18,9 @@ For more information please contact me.
 6) **Reclassification_Labels.py**: This file adds the new labels (*L-DiffServ*) to the starting dataframe according to the classification algorithm selected.
 
 7) **Functions_Multiclassification.py**: This file contains the functions imported from the Reclassification_Labels.py
+
+
+### sim
 
 8) **Simulation_MAM_L_DiffServ**: This files simulates the MAM (maximum allocation model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our L-DiffServ.
 
