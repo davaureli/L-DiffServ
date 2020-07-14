@@ -22,11 +22,13 @@ For more information please contact me.
 
 ### sim
 
-8) **Simulation_MAM_L_DiffServ**: This files simulates the MAM (maximum allocation model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our L-DiffServ.
+1) **Simulation_MAM_L_DiffServ**: This files simulates the MAM (maximum allocation model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our L-DiffServ.
 
-9) **Simulation_RDM_L_DiffServ**: This files simulates the RDM (russian doll model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our *L-DiffServ*.
+2) **Simulation_RDM_L_DiffServ**: This files simulates the RDM (russian doll model) with setting of Cisco and Traffic Based for resource distribution; evaluating current classification and our *L-DiffServ*.
 
-Finally the *.pcap files* could be used to practice our work.
+### data_pcap
+
+1) *.pcap files* could be used to practice our work.
 
 
 
