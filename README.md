@@ -24,7 +24,7 @@ For more information please contact me.
 
 1) **Simulator_BE_L-DiffServ.py**: The file is the main for the spacket based simulator.
 
-2) **Functions_Simulator_LDIFFSERV.py**: This file contains all classes for the simulator.
+2) **Functions_Simulator_L-DiffServ.py**: This file contains all classes for the simulator.
 
 ### data_pcap
 
