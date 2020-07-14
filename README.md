@@ -5,7 +5,7 @@ For more information please contact me.
 
 ### Methodology
 
-1) **get_Data_from_Mawi.py** : This file downloads the traces from the cite http://mawi.wide.ad.jp/mawi/samplepoint-F/2019/ specifying the                                 date.
+1) **get_Data_from_Mawi.py** : This file downloads the traces from the cite http://mawi.wide.ad.jp/mawi/samplepoint-G/2019/ specifying the                                 date.
 
 2) **Main.py** : This file works the trace by extracting the information from each packte to create the dataframe.
 
