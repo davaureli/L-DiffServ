@@ -1,6 +1,6 @@
 # L-DiffServ & Packet Based Simulator
 
-This code is related to the paper titled "Going Beyond DiffServ in IP Traffic Classification" under consideration for publication. 
+This work is related to the paper titled **Going Beyond DiffServ in IP Traffic Classification** published in *NOMS 2020-2020 IEEE/IFIP Network Operations and Management Symposium. IEEE, 2020*. Now the development related to the simulator code is related to another paper under consideration for publication. 
 For more information please contact me.
 
 ### Methodology
