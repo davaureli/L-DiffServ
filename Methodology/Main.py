@@ -156,7 +156,7 @@ if __name__ == '__main__':
     dizionario, tot_pkt = packetAnalysis()
     
     print()
-    print("Dizionario")
+    print("Dictionary")
     print(dizionario)
     print()
     
