@@ -2,7 +2,7 @@
 """
 Created on Sun Jun 14 10:24:27 2020
 
-@author: user
+@author: Davide and Marco
 """
 
 
@@ -11,10 +11,12 @@ from Functions_Simulator_LDIFFSERV import *
 from collections import Counter
 import pickle
 
+#Packet Discarded and Sessions Hit
+
 totale_pacchetti_scartati = []
 totale_sessioni_colpite = []
 
-print("Inizio Nuova Simulazione")
+print("Starting New Simulation")
 
 
 for i in range(1):
@@ -24,7 +26,7 @@ for i in range(1):
     start = timeit.default_timer()
     
     
-    #Reading File
+    #Reading File (in your cwd)
     #path_file = "C:\\Users\\user\\Desktop\\Trace_0403_DSCP_label.txt"
     
     path_file = "./Trace_0508_DSCP_label.txt"
@@ -57,7 +59,7 @@ for i in range(1):
     
     #Select a Specific DSCP 
     
-    #Creazione dizionario vuoto
+    #Dict for the different DSCP
     dict_DSCP_class = {}
     
     dict_DSCP_label = {"BE":["0"], "Scavenger":[str(i) for i in range(1,8)],
@@ -111,7 +113,7 @@ for i in range(1):
     
     #input()
     
-    #Aggiunta - Teorema di Parekh-Gallager
+    #Parekh-Gallager Theorem
     for kiave in dict_DSCP_class:
         #print(dict_DSCP_class[kiave]['buff_len'])
         
@@ -123,14 +125,14 @@ for i in range(1):
     
     #print(dict_DSCP_class)
     
-    #Aggiunta la Quantità di Buffer Infinito
+    #Adding infinity buffer resource to the other DSCP classes
     for k in dict_DSCP_class:
         if k != "BE":
             dict_DSCP_class[k]["buff_len"] = 1000000000
     
     #input()
     
-    #Caso di Banda assegnata pari a 0 inseriamo il valore del buffer
+    #If bandwidth is 0 then we can use buffer's value
     for k in dict_DSCP_class:
         if dict_DSCP_class[k]["reserved_bandwidth"] == 0:
             dict_DSCP_class[k]["reserved_bandwidth"] = dict_DSCP_class[k]["buff_len"]
@@ -264,7 +266,7 @@ for i in range(1):
     print()
     
     
-    #Plot analizzando singole sessioni in base al DSCP
+    #Plot analyzing sessions based on the DSCP
        
     f = open("sim_output_newDSCP_0508_drop.txt", "r")
 
@@ -297,7 +299,7 @@ print("Finish Simulation")
 #    pickle.dump(totale_sessioni_colpite, f)
 
 
-### Sessions Number 
+#Traffic Trace --> Sessions Number 
     
 #0403    5895
 #0410    5511
