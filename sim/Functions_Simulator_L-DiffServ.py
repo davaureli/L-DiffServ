@@ -2,7 +2,7 @@
 """
 Created on Sat May 23 13:18:55 2020
 
-@author: user
+@author: Davide and Marco
 """
 
 ### Simulatore
@@ -118,7 +118,8 @@ class Linecard:
         #Rio per Best Effort (utile inserirlo nella creazione della linecard questi parametri)
         #self.rio_be_param = {28:(0.5,1), 6:(0.7, 0.6), 8:(0.5, 1), 0:(0.5, 1), 2:(0.5, 1), 4:(0.5, 1), 15:(0.5, 1), 7:(0.5, 1), 18:(0.5, 1)}
         
-        
+        #Different Configuration for WRED according to the differentiation between service classes
+
         #Traccia0417
 #        self.rio_be_param = {7:(0.99,1),14:(1,1),20:(1,1),67:(1,1), 59:(1,1),12:(1,1), 4:(1,1), 16:(1,1),
 #                             3:(1,1), 23:(1,1), 8:(1,1), 35:(1,1)}
